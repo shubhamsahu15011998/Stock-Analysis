@@ -1,0 +1,1 @@
+SYMBOL_FILE_NAME = "data/symbols.csv"
