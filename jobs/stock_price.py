@@ -1,3 +1,5 @@
+import os
+
 import requests
 import time
 
@@ -21,7 +23,7 @@ class StockPrice:
     def fetch_stock_data(symbol='COCHINSHIP-EQ', from_date=1577836800, to_date=current_epoch_time):
         headers = {
             'content-type': 'application/json; charset=utf-8',
-            'origin': 'https://charting.nseindia.com',
+            'origin': str(os.environ.get('BASE_URL', '')),
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
         }
 
@@ -34,5 +36,5 @@ class StockPrice:
             'chartPeriod': 'D',
             'chartStart': 0,
         }
-        response = requests.post('https://charting.nseindia.com//Charts/ChartData/', headers=headers, json=json_data)
+        response = requests.post(f'{os.environ.get('BASE_URL', '')}//Charts/ChartData/', headers=headers, json=json_data)
         return response.json()

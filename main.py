@@ -1,6 +1,8 @@
-import os
+from sqlalchemy.orm import sessionmaker
 
+from DB import get_database_connection
 from init import app
+from models import Base
 
 
 @app.route("/")
