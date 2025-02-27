@@ -1,3 +1,4 @@
+import os
 from io import StringIO
 
 import pandas as pd
@@ -15,7 +16,7 @@ class Symbols:
     def fetch_symbols():
         headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', }
-        response = requests.get('https://charting.nseindia.com//Charts/GetEQMasters', headers=headers)
+        response = requests.get(f'{os.environ.get('BASE_URL', '')}//Charts/GetEQMasters', headers=headers)
         return response.text
 
     @staticmethod
