@@ -1,8 +1,12 @@
+import time
+
 from init import app
 from jobs.stock_price import StockPrice
 from jobs.symbols import Symbols
 
 import click
+
+
 
 # Chatgpt chrome
 # @app.cli.command("greet")
@@ -36,7 +40,10 @@ def get_stock_data(time_range="Historical"):
     """
 
     try:
-        print(StockPrice.fetch_stock_data())
+        data = StockPrice.fetch_stock_data()
+        start_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(data["t"][0]))
+        end_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(data["t"][-1]))
+        print(start_time, end_time, len(data["t"]))
     except Exception as e:
         print(str(e))
         raise e
