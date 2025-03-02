@@ -8,10 +8,11 @@ class Symbol:
 
     @classmethod
     def insert(cls, df: pd.DataFrame) -> bool:
-        symbols = [
-            SymbolModel(scrip_code=str(obj.get("scrip_code", "")), trading_symbol=str(obj.get("trading_symbol", "")),
-                        description=str(obj.get("description", "")), instrument_type=int(obj.get("instrument_type", 0)))
-            for obj in df.to_dict(orient='records')]
-        DBUtils.bulk_upsert(symbols)
+        data = df.to_dict(orient='records')
+        print("Data Length : ", len(data))
+        DBUtils.bulk_upsert(SymbolModel, data, ["trading_symbol"])
         return True
 
+    # @classmethod
+    # def get_all(cls):
+    #     return SymbolModel.objects

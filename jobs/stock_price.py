@@ -20,7 +20,8 @@ class StockPrice:
         pass
 
     @staticmethod
-    def fetch_stock_data(symbol='COCHINSHIP-EQ', from_date=1577836800, to_date=current_epoch_time):
+    def fetch_all_stock_data(symbol='COCHINSHIP-EQ', from_date=1577836800, to_date=current_epoch_time):
+        # for symbol in
         headers = {
             'content-type': 'application/json; charset=utf-8',
             'origin': str(os.environ.get('BASE_URL', '')),

@@ -1,4 +1,4 @@
-from config.base import *
+BASE_URL = "https://charting.nseindia.com"
 
 MAX_INSERT_PARTITION = 100
 DB_URL = "postgresql://admin:admin@localhost:5432/stock_analysis"

@@ -40,7 +40,7 @@ def get_stock_data(time_range="Historical"):
     """
 
     try:
-        data = StockPrice.fetch_stock_data()
+        data = StockPrice.fetch_all_stock_data()
         start_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(data["t"][0]))
         end_time = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(data["t"][-1]))
         print(start_time, end_time, len(data["t"]))

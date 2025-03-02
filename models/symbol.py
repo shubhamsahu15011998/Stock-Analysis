@@ -20,3 +20,7 @@ class Symbol(Base):
 
     def __repr__(self):
         return f"<Symbol(trading_symbol='{self.trading_symbol}')>"
+
+    @classmethod
+    def get_primary_key(cls):
+        return Symbol.__table__.primary_key.columns.keys()

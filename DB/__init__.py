@@ -23,6 +23,7 @@ class SQLSession:
                         max_overflow=int(os.environ.get("SQL_DB_MAX_OVERFLOW")) # max_overflow=10 → Allows 10 additional temporary connections if the pool is full.
                     )
                     engine.connect()
+                    Base.metadata.create_all(engine)
                     cls.engine = engine
                 except Exception as e:
                     if attempt < max_retries - 1:
@@ -35,7 +36,6 @@ class SQLSession:
     def get_session(cls):
         try:
             engine = cls.get_database_connection()
-            Base.metadata.create_all(engine)
             session = sessionmaker(bind=engine)
             return session()
         except Exception as e:
